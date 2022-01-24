@@ -1,0 +1,47 @@
+CLASS Item
+	INTEGER id
+	STRING title
+	IMAGE icon
+
+	CONSTRUCTOR Item (INTEGER id, STRING title)
+		id = id
+		title = title
+		icon = icon
+	ENDCONSTRUCTOR
+
+ENDCLASS
+
+CLASS ItemStore
+	ARRAY items
+	
+	CONSTRUCTOR ItemStore()
+		// This is where all items will be defined
+		// e.g.
+		// items.add(Item(ITEMS_ID_HERE, ITEMS_TITLE_HERE))
+	ENDCONSTRUCTOR
+	
+	FUNCTION RetrieveItem(INTEGER ID)
+		FOR item in items
+			IF item.id equals ID
+				RETURN item
+			ENDIF
+		ENDFOR
+	ENDFUNCTION
+	FUNCTION RetrieveItem(INTEGER Title)
+		FOR item in items
+			IF item.id equals ID
+				RETURN item
+			ENDIF
+		ENDFOR
+	ENDFUNCTION
+ENDCLASS
+
+CLASS Inventory
+	ARRAY items
+	
+	CONSTRUCTOR Inventory(ARRAY _items)
+		FOR item in _items
+			items.add(item)
+		ENDFOR
+	ENDCONSTRUCTOR
+ENDCLASS
