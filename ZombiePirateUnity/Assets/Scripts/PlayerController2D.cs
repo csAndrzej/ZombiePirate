@@ -1,45 +1,27 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController2D : MonoBehaviour
 {
-    private Vector2 mouseInput;
+    private Vector3 mouseInput;
     private Vector2 movementInput;
     private Vector2 currentVelocity;
     private Rigidbody2D p_RigidBody;
+    private SpriteRenderer spriteRenderer;
     
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
-
-    //inventory variables
-    private Inventory inventory;
-    [SerializeField] private UI_Inventory uiInventory;
+    [SerializeField] private float health;
 
     void Awake()
     {
         p_RigidBody = GetComponent<Rigidbody2D>();
-
-        inventory = new Inventory(UseItem);
-        uiInventory.SetPlayer(this.gameObject);
-        uiInventory.SetInventory(inventory);
-
-        ItemWorld.SpawnItemWorld(new Vector3(20, 0), new Item { itemType = Item.ItemType.Barrel, amount = 1 });    //TEST FUNCTION DELETE LATER
-        ItemWorld.SpawnItemWorld(new Vector3(-20, 0), new Item { itemType = Item.ItemType.Crate, amount = 1 });    //TEST FUNCTION DELETE LATER
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        //This happens when player collides with item in world
-        ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
-        if(itemWorld != null) //add item to inventory
-        {
-            inventory.AddItem(itemWorld.GetItem());
-            itemWorld.DestroySelf();
-        }
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        mouseInput = new Vector3(Input.GetAxis("Fire1"), Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         currentVelocity = p_RigidBody.velocity;
     }
@@ -60,22 +42,39 @@ public class PlayerController2D : MonoBehaviour
 
             p_RigidBody.velocity += currentVelocity * moveSpeed;
         }
-    }
-    
-    private void UseItem(Item item)
-    {
-        //Allows player to use item in inventory, each item has different effects
-        switch (item.itemType)
+
+        if (mouseInput != Vector3.zero)
         {
-            case Item.ItemType.Barrel:      //TEMPORARY DELETE LATER
-                //do barrel stuff
-                Destroy(this.gameObject);
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.Barrel, amount = 1 });
-                break;
-            case Item.ItemType.Crate:       //TEMPORARY DELETE LATER
-                //do crate stuff
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.Crate, amount = 1 });
-                break;
+            if (mouseInput.x != 0)
+            {
+                
+            }
         }
+    }
+
+    public void TakeDamage(float attackDamage)
+    {
+        Debug.Log("Called!");
+        health -= attackDamage;
+        StartCoroutine("CastDamageEffect");
+        StopCoroutine("CastDamageEffect");
+        
+    }
+
+    IEnumerator CastDamageEffect()
+    {
+        Debug.Log("CASTDAMAGEEFFECT");
+        // Original colour of the sprite 
+        Color baseColor = spriteRenderer.color;
+        
+        spriteRenderer.color = Color.red;
+
+        for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
+        {
+            spriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
+            yield return null;
+        }
+
+        spriteRenderer.color = baseColor;
     }
 }
