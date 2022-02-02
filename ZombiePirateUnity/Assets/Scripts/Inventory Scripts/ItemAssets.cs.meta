@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bcff7054b43a6b9448a3a567ae23aaa5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pfItemWorld: {instanceID: 0}
+  - barrelSprite: {instanceID: 0}
+  - crateSprite: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
