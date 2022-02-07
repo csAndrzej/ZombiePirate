@@ -16,4 +16,7 @@ public class ItemAssets : MonoBehaviour
     //all item sprites listed here
     public Sprite barrelSprite;
     public Sprite crateSprite;
+    public Sprite ropeSprite;
+    public Sprite pistolSprite;
+    public Sprite musketSprite;
 }
