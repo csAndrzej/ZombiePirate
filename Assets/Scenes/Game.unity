@@ -189,6 +189,9 @@ MonoBehaviour:
   pfItemWorld: {fileID: 2009536717416383323, guid: e337ee87090a9b6418ca5bb9f5c0d40c, type: 3}
   barrelSprite: {fileID: 21300000, guid: b9faea54656a34f49aaea9eab34e5dc6, type: 3}
   crateSprite: {fileID: 21300000, guid: 1f9e3699b8c92574298b81c967de4110, type: 3}
+  ropeSprite: {fileID: 21300000, guid: bbc500725af08cc42b29355e891f96e6, type: 3}
+  pistolSprite: {fileID: 21300000, guid: b5067f9ed30bced4cabea0edef4c4668, type: 3}
+  musketSprite: {fileID: 21300000, guid: 9d06845e6543db64da42fce0673bf3de, type: 3}
 --- !u!4 &247657680
 Transform:
   m_ObjectHideFlags: 0
@@ -229,7 +232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501394288}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -459.88205, y: -214.27574, z: -0.09047006}
+  m_LocalPosition: {x: -459.88205, y: -214.27574, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -932,6 +935,7 @@ GameObject:
   - component: {fileID: 1595298119}
   - component: {fileID: 1595298118}
   - component: {fileID: 1595298117}
+  - component: {fileID: 1595298120}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -1005,6 +1009,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1595298120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595298116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f979fd937c8f1e42a7c1152e37607f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetToFollow: {fileID: 1383425910}
+  offset: {x: 0, y: 0, z: 0}
+  smoothFactor: 3
 --- !u!1 &1907487278
 GameObject:
   m_ObjectHideFlags: 0

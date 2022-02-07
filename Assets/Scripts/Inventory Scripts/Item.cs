@@ -13,7 +13,10 @@ public class Item
         //Apples,
         //Coin 
         Barrel,                             //TEMPORARY TEST ITEM DELETE LATER
-        Crate                               //TEMPORARY TEST ITEM DELETE LATER
+        Crate,                              //TEMPORARY TEST ITEM DELETE LATER
+        Rope,
+        Pistol,
+        Musket
     }
 
     public ItemType itemType;               //identity of the item
@@ -27,6 +30,9 @@ public class Item
             default:
             case ItemType.Barrel: return ItemAssets.Instance.barrelSprite;
             case ItemType.Crate: return ItemAssets.Instance.crateSprite;
+            case ItemType.Rope: return ItemAssets.Instance.ropeSprite;
+            case ItemType.Pistol: return ItemAssets.Instance.pistolSprite;
+            case ItemType.Musket: return ItemAssets.Instance.musketSprite;
         }
     }
 
@@ -37,8 +43,11 @@ public class Item
         {
             default:
             case ItemType.Barrel:
+            case ItemType.Rope:
                 return true;
             case ItemType.Crate:
+            case ItemType.Pistol:
+            case ItemType.Musket:
                 return false;
         }
     }

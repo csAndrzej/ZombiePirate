@@ -22,7 +22,7 @@ public class PlayerController2D : MonoBehaviour
         uiInventory.SetPlayer(this.gameObject);
         uiInventory.SetInventory(inventory);
 
-        ItemWorld.SpawnItemWorld(new Vector3(20, 0), new Item { itemType = Item.ItemType.Barrel, amount = 1 });    //TEST FUNCTION DELETE LATER
+        ItemWorld.SpawnItemWorld(new Vector3(20, 0), new Item { itemType = Item.ItemType.Rope, amount = 2 });    //TEST FUNCTION DELETE LATER
         ItemWorld.SpawnItemWorld(new Vector3(-20, 0), new Item { itemType = Item.ItemType.Crate, amount = 1 });    //TEST FUNCTION DELETE LATER
     }
 
