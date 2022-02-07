@@ -6,6 +6,18 @@ public class ProjectileScript : MonoBehaviour
 {
     [SerializeField] private int damage;
 
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        //if velocity < 0 destroy object
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         //Collision with player
