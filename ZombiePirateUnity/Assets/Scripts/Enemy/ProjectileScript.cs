@@ -26,6 +26,10 @@ public class ProjectileScript : MonoBehaviour
             //reduce health
             Destroy(gameObject);
         }
+
+        //If collision occurs with anything but enemies
+        if (!collider.CompareTag("Enemy"))
+            Destroy(gameObject);
     }
 
     private void OnBecameInvisible()
