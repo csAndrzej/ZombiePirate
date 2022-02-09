@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class SuperZombie : MonoBehaviour
 {
@@ -18,23 +19,22 @@ public class SuperZombie : MonoBehaviour
 
     [SerializeField] private float distanceToBackAway;
 
-    private bool transformed = false;
+    public bool transformed = false;
     [SerializeField] private float transformationTimer;
-    private bool startRunning = false;
+    public bool startRunning = false;
 
     private Item[] itemDrops;
 
     private Rigidbody2D rb;
+    private AIPath aiPath;
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-
-        //Item Drops for zombie
-        //itemDrops[0] = new Item { itemType = Item.ItemType.Rope, amount = 3 };
-        //itemDrops[1] = new Item { itemType = Item.ItemType.Rope, amount = 4 };
-        //itemDrops[2] = new Item { itemType = Item.ItemType.Rope, amount = 5 };
+        aiPath = GetComponent<AIPath>();
     }
 
+    //Code Version 1
+    /* 
     void Update()
     {
         //Check if player is within attack range
@@ -111,6 +111,37 @@ public class SuperZombie : MonoBehaviour
                 break;
         }
     }
+    */
+
+    void Update()
+    {
+        //Check if player is within attack range
+        float distanceToPlayer = Vector3.Distance(transform.position, target.position);
+
+        if(!transformed)
+        {
+            if (startRunning)
+            {
+                //Timer to transform
+                transformationTimer -= Time.deltaTime;
+
+                //turn away from the player
+                Vector3 targetDir = transform.position - target.position;
+                float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+                Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, q, rotationSpeed * Time.deltaTime);
+
+                //move away from the player
+                Vector3 direction = transform.position - target.position;
+                rb.MovePosition(transform.position + (direction * speed * Time.deltaTime));
+
+                if (transformationTimer <= 0f)
+                    Transformation();
+            }
+            else if (distanceToPlayer < distanceToBackAway)
+                startRunning = true;
+        }
+    }
 
     void Transformation()
     {
@@ -120,5 +151,8 @@ public class SuperZombie : MonoBehaviour
         health *= 10;
         speed /= 2;
         transform.localScale = new Vector3(transform.localScale.x * transformationSize, transform.localScale.y * transformationSize, transform.localScale.z);
+        aiPath.radius *= transformationSize/2; //Change radius of AIpath for more accurate pathfinding
+
+        aiPath.enabled = true;
     }
 }

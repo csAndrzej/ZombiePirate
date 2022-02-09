@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class RangerAI : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class RangerAI : MonoBehaviour
     public int damage;
     private float lastAttackTime;
     [SerializeField] private float attackDelay;
-    [SerializeField] private float rotationSpeed = 90f;
+    private float rotationSpeed = 360f;
 
     [SerializeField] private float distanceToBackAway;
 
@@ -26,12 +27,19 @@ public class RangerAI : MonoBehaviour
     public float projectileForce;
 
     private Rigidbody2D rb;
+
+    private AIPath aiPath;
+    private SpriteRenderer sprite;
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        aiPath = GetComponent<AIPath>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
 
         target = GameObject.Find("Player").transform;
     }
+
+    /*Code Version 1
 
     void Update()
     {
@@ -105,6 +113,32 @@ public class RangerAI : MonoBehaviour
             case 2:
                 ItemWorld.SpawnItemWorld(gameObject.transform.position, new Item { itemType = Item.ItemType.Musket, amount = 1 });
                 break;
+        }
+    }
+    */
+
+    void Update()
+    {
+        if (aiPath.reachedDestination)
+        {
+            //////turn to the player
+            //Vector3 targetDir = target.position - transform.position;
+            //float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg; //-90f
+            //Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            //transform.rotation = Quaternion.RotateTowards(transform.rotation, q, rotationSpeed * Time.deltaTime);
+
+            Vector3 targetDir = target.position - sprite.transform.position;
+            float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            sprite.transform.rotation = Quaternion.RotateTowards(sprite.transform.rotation, q, rotationSpeed * Time.deltaTime);
+
+            //Check attack delay
+            if (Time.time > lastAttackTime + attackDelay)
+            {
+                GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
+                newProjectile.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(projectileForce, 0f));
+                lastAttackTime = Time.time;
+            }
         }
     }
 }
