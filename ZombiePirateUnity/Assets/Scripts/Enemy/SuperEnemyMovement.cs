@@ -42,8 +42,6 @@ public class SuperEnemyMovement : MonoBehaviour
             float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, q, rotationSpeed * Time.deltaTime);
-
-            Debug.Log("works as shoudl");
         }
         else if(startedRunning)
         {
@@ -52,8 +50,6 @@ public class SuperEnemyMovement : MonoBehaviour
             float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, q, rotationSpeed * Time.deltaTime);
-
-            Debug.Log("doesnt work");
         }
 
     }
