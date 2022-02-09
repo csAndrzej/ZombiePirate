@@ -3,24 +3,30 @@ using System.Collections;
 
 public class PlayerController2D : MonoBehaviour
 {
-    private Vector3 mouseInput;
-    private Vector2 movementInput;
-    private Vector2 currentVelocity;
-    private Rigidbody2D p_RigidBody;
-    private SpriteRenderer spriteRenderer;
-    
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float rotationSpeed;
-    [SerializeField] private float health;
+    [SerializeField] private int Health;
+    [SerializeField] private int MeleeDamage;
+    [SerializeField] private float MovementSpeed;
+    [SerializeField] private float RotationSpeed;
+    [SerializeField] private float AttackDelay;
+
+    [SerializeField] private GameObject Bullet;
+    private float LastAttackDt;
+
+    private Vector3 MouseInput;
+    private Vector2 KeyboardInput;
+    private Vector2 Velocity;
+    private Rigidbody2D mRigidBody;
+    private SpriteRenderer mSpriteRenderer;
 
     //inventory variables
     private Inventory inventory;
     [SerializeField] private UI_Inventory uiInventory;
 
+
     void Awake()
     {
-        p_RigidBody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        mRigidBody = GetComponent<Rigidbody2D>();
+        mSpriteRenderer = GetComponent<SpriteRenderer>();
 
         inventory = new Inventory(UseItem);
         uiInventory.SetPlayer(this.gameObject);
@@ -40,64 +46,47 @@ public class PlayerController2D : MonoBehaviour
             itemWorld.DestroySelf();
         }
     }
-
+    
     void Update()
     {
-        mouseInput = new Vector3(Input.GetAxis("Fire1"), Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        currentVelocity = p_RigidBody.velocity;
+        MouseInput = new Vector3(Input.GetAxis("Fire1"), Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        // Gets the input from mouse button1 and it's xy axis
+        KeyboardInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        // Gets the input from keyboard for horizontal and vertical keys
     }
 
     private void FixedUpdate()
     {
-        Vector3 MouseWorldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // This is required as the Input.mousePosition gives coordinates relative to the screen rather than our world
+        Vector3 MouseCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);   // Get mouse coordinates relative to our screen
 
-        float targetAngle = -Mathf.Atan2(MouseWorldPoint.x, MouseWorldPoint.y) * (180 / Mathf.PI);
-        transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, targetAngle), rotationSpeed * Time.deltaTime);
+        float Theta = -Mathf.Atan2(MouseCoord.x - transform.position.x, MouseCoord.y - transform.position.y) * (180 / Mathf.PI);
+        // The angle used to orient the player based on where the mouse is
+
+        transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, Theta), RotationSpeed * Time.deltaTime);
         // Used spherical interpolation for 'smoother' rotation of the player 
 
-        if (movementInput != Vector2.zero)
+        if (KeyboardInput != Vector2.zero)
         {
-            currentVelocity.y = Mathf.Cos(p_RigidBody.rotation * (Mathf.PI / 180)) * movementInput.y + Mathf.Sin(p_RigidBody.rotation * Mathf.PI / 180) * movementInput.x;
-            currentVelocity.x = -Mathf.Sin(p_RigidBody.rotation * (Mathf.PI / 180)) * movementInput.y + Mathf.Cos(p_RigidBody.rotation * Mathf.PI / 180) * movementInput.x;
-
-            p_RigidBody.velocity += currentVelocity * moveSpeed;
+            Velocity.y = Mathf.Cos(mRigidBody.rotation * (Mathf.PI / 180)) * KeyboardInput.y + Mathf.Sin(mRigidBody.rotation * Mathf.PI / 180) * KeyboardInput.x;
+            Velocity.x = -Mathf.Sin(mRigidBody.rotation * (Mathf.PI / 180)) * KeyboardInput.y + Mathf.Cos(mRigidBody.rotation * Mathf.PI / 180) * KeyboardInput.x;
+            // Using trigonometry to work out scalar direction of the player's movement
+            // Instead of just forward input, it takes into account A, D input to allow the player
+            // to move sideways while moving forward to create smoother controls
+            mRigidBody.velocity += Velocity * MovementSpeed;
         }
 
-        if (mouseInput != Vector3.zero)
+        if (MouseInput.x == 1 && Time.time > LastAttackDt + AttackDelay)
         {
-            if (mouseInput.x != 0)
-            {
-                
-            }
-        }
-    }
-
-    public void TakeDamage(float attackDamage)
-    {
-        Debug.Log("Called!");
-        health -= attackDamage;
-        StartCoroutine("CastDamageEffect");
-        StopCoroutine("CastDamageEffect");
-        
-    }
-
-    IEnumerator CastDamageEffect()
-    {
-        Debug.Log("CASTDAMAGEEFFECT");
-        // Original colour of the sprite 
-        Color baseColor = spriteRenderer.color;
-        
-        spriteRenderer.color = Color.red;
-
-        for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
-        {
-            spriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
-            yield return null;
+            GameObject bullet = Instantiate(Bullet);
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = transform.rotation;
+            LastAttackDt = Time.time;
         }
 
-        spriteRenderer.color = baseColor;
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void UseItem(Item item)
@@ -115,5 +104,27 @@ public class PlayerController2D : MonoBehaviour
                 inventory.RemoveItem(new Item { itemType = Item.ItemType.Crate, amount = 1 });
                 break;
         }
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+        StartCoroutine("CastDamageEffect");
+    }
+
+    IEnumerator CastDamageEffect()
+    {
+        // Original colour of the sprite 
+        Color baseColor = mSpriteRenderer.color;
+        
+        mSpriteRenderer.color = Color.red;
+
+        for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
+        {
+            mSpriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
+            yield return null;
+        }
+
+        mSpriteRenderer.color = baseColor;
     }
 }
