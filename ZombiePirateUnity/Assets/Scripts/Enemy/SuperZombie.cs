@@ -10,7 +10,7 @@ public class SuperZombie : MonoBehaviour
     [SerializeField] private float speed;
 
     [SerializeField] private Transform target;
-    [SerializeField] private float chaseRange;
+    public float chaseRange;
 
     [SerializeField] private int damage;
     private float lastAttackTime;
@@ -19,9 +19,9 @@ public class SuperZombie : MonoBehaviour
 
     [SerializeField] private float distanceToBackAway;
 
-    public bool transformed = false;
+    [HideInInspector] public bool transformed = false;
     [SerializeField] private float transformationTimer;
-    public bool startRunning = false;
+    [HideInInspector] public bool startRunning = false;
 
     private Item[] itemDrops;
 

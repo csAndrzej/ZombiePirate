@@ -12,7 +12,7 @@ public class RangerAI : MonoBehaviour
     int currentPatrolIndex;
 
     [SerializeField] private Transform target;
-    [SerializeField] private float chaseRange;
+    [SerializeField] public float chaseRange;
     [SerializeField] private float stopChaseRange;
 
     [SerializeField] private float attackRange;
@@ -127,10 +127,10 @@ public class RangerAI : MonoBehaviour
             //Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             //transform.rotation = Quaternion.RotateTowards(transform.rotation, q, rotationSpeed * Time.deltaTime);
 
-            Vector3 targetDir = target.position - sprite.transform.position;
+            Vector3 targetDir = target.position - transform.position;
             float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            sprite.transform.rotation = Quaternion.RotateTowards(sprite.transform.rotation, q, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, q, rotationSpeed * Time.deltaTime);
 
             //Check attack delay
             if (Time.time > lastAttackTime + attackDelay)

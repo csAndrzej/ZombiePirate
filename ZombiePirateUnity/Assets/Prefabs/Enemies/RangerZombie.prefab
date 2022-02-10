@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2462725255921008104}
   - component: {fileID: 2462725255921008105}
   - component: {fileID: 2462725255921008110}
+  - component: {fileID: 3903559318557970196}
   m_Layer: 0
   m_Name: RangerZombie
   m_TagString: Enemy
@@ -183,6 +184,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!114 &3903559318557970196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798899626590523364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78dc79bcf31c8794ea3e50fd0e88ebd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseRange: 20
 --- !u!1 &2462725255256086534
 GameObject:
   m_ObjectHideFlags: 0
