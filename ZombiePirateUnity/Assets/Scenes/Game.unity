@@ -8263,11 +8263,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 382910663739656027, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
       propertyPath: m_RootOrder
-<<<<<<< Updated upstream
-      value: 32
-=======
       value: 34
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 382910663739656027, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
       propertyPath: m_LocalScale.x
@@ -8875,11 +8871,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
-  m_RootOrder: 34
-=======
   m_RootOrder: 33
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &708411373
 GameObject:
@@ -15751,11 +15743,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 382910663739656027, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
       propertyPath: m_RootOrder
-<<<<<<< Updated upstream
-      value: 33
-=======
       value: 35
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 382910663739656027, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
       propertyPath: m_LocalScale.x
