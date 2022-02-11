@@ -16,6 +16,9 @@ public class NormalZombieAI : MonoBehaviour
     private Rigidbody2D mRigidBody;
     private float LastAttackDt;
     private Vector2 Velocity;
+
+    public int NumberOfZombies;
+    public GameObject walls;
     
     void Start()
     {
@@ -24,8 +27,20 @@ public class NormalZombieAI : MonoBehaviour
         Target = GameObject.FindGameObjectWithTag("Player").transform;
         mPlayerController = FindObjectOfType<PlayerController2D>();
         LastAttackDt = 0f;
-    }
 
+        NumberOfZombies = 2;
+    }
+    public void Update()
+    {
+        if (NumberOfZombies <= 0)
+        {
+            Destroy(walls);
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            NumberOfZombies--;
+        }
+    }
     void FixedUpdate()
     {
         // Check if target is withing the range to follow it 
@@ -60,6 +75,8 @@ public class NormalZombieAI : MonoBehaviour
         {
             ItemDropOnDeath();
             Destroy(gameObject); // Method of death
+
+            NumberOfZombies--;
         }
     }
 
