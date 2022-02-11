@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerController2D : MonoBehaviour
 {
-   
-    [SerializeField] private int MaxHealth;
-    [SerializeField] private int Health;
+    
+    [SerializeField] public int MaxHealth;
+    [SerializeField] public static int Health;
     [SerializeField] private int MeleeDamage;
     [SerializeField] private float MovementSpeed;
     [SerializeField] private float RotationSpeed;
@@ -32,7 +32,7 @@ public class PlayerController2D : MonoBehaviour
     void Awake()
     {
         MaxHealth = 100;
-        MaxHealth = Health;
+        Health = MaxHealth;
 
         mRigidBody = GetComponent<Rigidbody2D>();
         mSpriteRenderer = GetComponent<SpriteRenderer>();

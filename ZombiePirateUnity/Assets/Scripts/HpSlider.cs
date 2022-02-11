@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HpSlider : MonoBehaviour
 {
-   
+    public int CurrentHP;
     public Slider slider;
 
     public void SetMaxHealth(int health)
@@ -19,6 +19,10 @@ public class HpSlider : MonoBehaviour
     {
         slider.value = health;
     }
-
+    public void Update()
+    {
+        slider.value = PlayerController2D.Health;
+        
+    }
 }
 

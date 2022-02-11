@@ -10534,7 +10534,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.479
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10550,6 +10550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5b607b9c7d370429534f964c87eef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentHP: 0
   slider: {fileID: 821610447}
 --- !u!1 &825544542
 GameObject:
@@ -18341,8 +18342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f9000c684a9894d87df1e0fa3d540a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 0
-  Health: 100
+  MaxHealth: 100
   MeleeDamage: 15
   MovementSpeed: 5
   RotationSpeed: 6
