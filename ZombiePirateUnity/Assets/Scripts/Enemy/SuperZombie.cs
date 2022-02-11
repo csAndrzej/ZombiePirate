@@ -31,6 +31,8 @@ public class SuperZombie : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody2D>();
         aiPath = GetComponent<AIPath>();
+
+        target = GameObject.Find("Player").transform;
     }
 
     //Code Version 1
