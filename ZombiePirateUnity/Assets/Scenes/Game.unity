@@ -4875,7 +4875,6 @@ MonoBehaviour:
   Health: 100
   MovementSpeed: 3
   RotationSpeed: 5
-  Range: 0
   AttackDelay: 0.8
   AttackDamage: 10
   Target: {fileID: 1383425910}
@@ -8430,7 +8429,6 @@ MonoBehaviour:
   Health: 100
   MovementSpeed: 3
   RotationSpeed: 5
-  Range: 0
   AttackDelay: 0.8
   AttackDamage: 10
   Target: {fileID: 1383425910}
@@ -9847,7 +9845,6 @@ MonoBehaviour:
   Health: 100
   MovementSpeed: 3
   RotationSpeed: 5
-  Range: 0
   AttackDelay: 0.8
   AttackDamage: 10
   Target: {fileID: 1383425910}
@@ -10611,9 +10608,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0.479
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13956,7 +13953,6 @@ MonoBehaviour:
   Health: 100
   MovementSpeed: 3
   RotationSpeed: 5
-  Range: 0
   AttackDelay: 0.8
   AttackDamage: 10
   Target: {fileID: 1383425910}
@@ -16001,7 +15997,6 @@ MonoBehaviour:
   Health: 100
   MovementSpeed: 3
   RotationSpeed: 5
-  Range: 0
   AttackDelay: 0.8
   AttackDamage: 10
   Target: {fileID: 1383425910}
@@ -23948,7 +23943,6 @@ MonoBehaviour:
   Health: 100
   MovementSpeed: 3
   RotationSpeed: 5
-  Range: 0
   AttackDelay: 0.8
   AttackDamage: 10
   Target: {fileID: 1383425910}
