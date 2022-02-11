@@ -1,8 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
+
 
 public class PlayerController2D : MonoBehaviour
 {
+   
+    [SerializeField] private int MaxHealth;
     [SerializeField] private int Health;
     [SerializeField] private int MeleeDamage;
     [SerializeField] private float MovementSpeed;
@@ -22,9 +27,13 @@ public class PlayerController2D : MonoBehaviour
     private Inventory inventory;
     [SerializeField] private UI_Inventory uiInventory;
 
-
+    
+    
     void Awake()
     {
+        MaxHealth = 100;
+        MaxHealth = Health;
+
         mRigidBody = GetComponent<Rigidbody2D>();
         mSpriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -49,6 +58,7 @@ public class PlayerController2D : MonoBehaviour
     
     void Update()
     {
+        
         MouseInput = new Vector3(Input.GetAxis("Fire1"), Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         // Gets the input from mouse button1 and it's xy axis
         KeyboardInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
