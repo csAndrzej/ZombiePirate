@@ -7,7 +7,6 @@ public class NormalZombieAI : MonoBehaviour
     [SerializeField] private int Health;
     [SerializeField] private float MovementSpeed;
     [SerializeField] private float RotationSpeed;
-    [SerializeField] private float Range;
     [SerializeField] private float AttackDelay;
     [SerializeField] private int AttackDamage;
     [SerializeField] private Transform Target;
@@ -19,13 +18,14 @@ public class NormalZombieAI : MonoBehaviour
 
     public int NumberOfZombies;
     public GameObject walls;
-    
+
     void Start()
     {
         mRigidBody = GetComponent<Rigidbody2D>();
-        mSpriteRenderer = GetComponent<SpriteRenderer>();
         Target = GameObject.FindGameObjectWithTag("Player").transform;
         mPlayerController = FindObjectOfType<PlayerController2D>();
+        mSpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        
         LastAttackDt = 0f;
 
         NumberOfZombies = 2;
@@ -46,21 +46,14 @@ public class NormalZombieAI : MonoBehaviour
         // Check if target is withing the range to follow it 
         float DistanceToTarget = Vector3.Distance(transform.position, Target.position);
 
-        if (DistanceToTarget < Range)
+        if (DistanceToTarget < 5f)
         {
-            if (DistanceToTarget > 5f)
+            // Check if enough time passed between attacks
+            if (Time.time > LastAttackDt + AttackDelay)
             {
-                FollowTarget();
-            }
-            else 
-            {
-                // Check if enough time passed between attacks
-                if (Time.time > LastAttackDt + AttackDelay)
-                {
-                    AttackTarget();
-                    // Assigning time at which the attack occurred
-                    LastAttackDt = Time.time;
-                }
+                AttackTarget();
+                // Assigning time at which the attack occurred
+                LastAttackDt = Time.time;
             }
         }
         /*
@@ -78,17 +71,6 @@ public class NormalZombieAI : MonoBehaviour
 
             NumberOfZombies--;
         }
-    }
-
-    void FollowTarget()
-    {
-        Vector3 DistanceDiff = Target.position - transform.position;
-        float Theta = -Mathf.Atan2(Target.position.x - transform.position.x, Target.position.y - transform.position.y) * (180 / Mathf.PI);
-        transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, Theta), RotationSpeed * Time.deltaTime);
-        Velocity.y = Mathf.Cos(mRigidBody.rotation * (Mathf.PI / 180));
-        Velocity.x = -Mathf.Sin(mRigidBody.rotation * (Mathf.PI / 180));
-
-        mRigidBody.velocity += Velocity * MovementSpeed;
     }
 
     void AttackTarget()

@@ -4854,6 +4854,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+--- !u!1 &445197401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5186230446263164230, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+  m_PrefabInstance: {fileID: 445197400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &445197402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445197401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c958230f3e8a449b10f22248ac44ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  MovementSpeed: 3
+  RotationSpeed: 5
+  Range: 0
+  AttackDelay: 0.8
+  AttackDamage: 10
+  Target: {fileID: 1383425910}
+  NumberOfZombies: 8
+  walls: {fileID: 0}
 --- !u!1 &448735756
 GameObject:
   m_ObjectHideFlags: 0
@@ -8383,6 +8409,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+--- !u!1 &657860230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5186230446263164230, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+  m_PrefabInstance: {fileID: 657860229}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &657860231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657860230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c958230f3e8a449b10f22248ac44ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  MovementSpeed: 3
+  RotationSpeed: 5
+  Range: 0
+  AttackDelay: 0.8
+  AttackDamage: 10
+  Target: {fileID: 1383425910}
+  NumberOfZombies: 8
+  walls: {fileID: 0}
 --- !u!1 &668131293
 GameObject:
   m_ObjectHideFlags: 0
@@ -9774,6 +9826,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+--- !u!1 &767287715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5186230446263164230, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+  m_PrefabInstance: {fileID: 767287714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &767287716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767287715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c958230f3e8a449b10f22248ac44ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  MovementSpeed: 3
+  RotationSpeed: 5
+  Range: 0
+  AttackDelay: 0.8
+  AttackDamage: 10
+  Target: {fileID: 1383425910}
+  NumberOfZombies: 8
+  walls: {fileID: 0}
 --- !u!1 &769587115
 GameObject:
   m_ObjectHideFlags: 0
@@ -13857,6 +13935,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+--- !u!1 &1029347075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5186230446263164230, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+  m_PrefabInstance: {fileID: 1029347074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1029347076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029347075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c958230f3e8a449b10f22248ac44ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  MovementSpeed: 3
+  RotationSpeed: 5
+  Range: 0
+  AttackDelay: 0.8
+  AttackDamage: 10
+  Target: {fileID: 1383425910}
+  NumberOfZombies: 8
+  walls: {fileID: 0}
 --- !u!1 &1038921353
 GameObject:
   m_ObjectHideFlags: 0
@@ -15876,6 +15980,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+--- !u!1 &1198657035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5186230446263164230, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+  m_PrefabInstance: {fileID: 1198657034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1198657036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198657035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c958230f3e8a449b10f22248ac44ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  MovementSpeed: 3
+  RotationSpeed: 5
+  Range: 0
+  AttackDelay: 0.8
+  AttackDamage: 10
+  Target: {fileID: 1383425910}
+  NumberOfZombies: 8
+  walls: {fileID: 0}
 --- !u!1 &1208111103
 GameObject:
   m_ObjectHideFlags: 0
@@ -23797,6 +23927,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+--- !u!1 &1765315899 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5186230446263164230, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+  m_PrefabInstance: {fileID: 1765315898}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1765315900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765315899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c958230f3e8a449b10f22248ac44ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  MovementSpeed: 3
+  RotationSpeed: 5
+  Range: 0
+  AttackDelay: 0.8
+  AttackDamage: 10
+  Target: {fileID: 1383425910}
+  NumberOfZombies: 8
+  walls: {fileID: 0}
 --- !u!1 &1772239684
 GameObject:
   m_ObjectHideFlags: 0
