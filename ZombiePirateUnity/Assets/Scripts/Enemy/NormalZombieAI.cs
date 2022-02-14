@@ -115,10 +115,10 @@ public class NormalZombieAI : MonoBehaviour
         switch (randomNumber)
         {
             case 0:
-                ItemWorld.SpawnItemWorld(gameObject.transform.position, new Item { itemType = Item.ItemType.Rope, amount = 1 });
+                //nothing
                 break;
             case 1:
-                ItemWorld.SpawnItemWorld(gameObject.transform.position, new Item { itemType = Item.ItemType.Rope, amount = 2 });
+                //nothing
                 break;
             case 2:
                 //nothing

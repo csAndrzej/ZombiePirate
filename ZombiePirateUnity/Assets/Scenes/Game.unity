@@ -3361,6 +3361,7 @@ MonoBehaviour:
   ropeSprite: {fileID: 21300000, guid: 96094f345809bc04ebe690d6767dc018, type: 3}
   pistolSprite: {fileID: 21300000, guid: b16e4a021c743fa40bc564664679da41, type: 3}
   musketSprite: {fileID: 21300000, guid: 49443c024fee83c48bf1bad8bbffd9d9, type: 3}
+  healthPotionSprite: {fileID: 21300000, guid: 0c11dd9fca0cdb94893c59575160da22, type: 3}
 --- !u!4 &247657680
 Transform:
   m_ObjectHideFlags: 0

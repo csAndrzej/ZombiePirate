@@ -14,12 +14,13 @@ public class MotherZombieAI : MonoBehaviour
     private float lastAttackTime;
     [SerializeField] private float attackDelay;
     [SerializeField] private float rotationSpeed = 45f;
-
+    private SpriteRenderer mSpriteRenderer;
     private Rigidbody2D rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        mSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
@@ -62,14 +63,43 @@ public class MotherZombieAI : MonoBehaviour
         switch (randomNumber)
         {
             case 0:
-                ItemWorld.SpawnItemWorld(gameObject.transform.position, new Item { itemType = Item.ItemType.Rope, amount = 1 });
+                //ItemWorld.SpawnItemWorld(gameObject.transform.position, new Item { itemType = Item.ItemType.Rope, amount = 1 });
                 break;
             case 1:
-                ItemWorld.SpawnItemWorld(gameObject.transform.position, new Item { itemType = Item.ItemType.Rope, amount = 2 });
+                //ItemWorld.SpawnItemWorld(gameObject.transform.position, new Item { itemType = Item.ItemType.Rope, amount = 2 });
                 break;
             case 2:
-                ItemWorld.SpawnItemWorld(gameObject.transform.position, new Item { itemType = Item.ItemType.Pistol, amount = 1 });
+                //ItemWorld.SpawnItemWorld(gameObject.transform.position, new Item { itemType = Item.ItemType.Pistol, amount = 1 });
                 break;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+        {
+            TakeDamage(collision.gameObject.GetComponent<Projectile>().Damage);
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        health -= damage;
+        StartCoroutine("CastDamageEffect");
+    }
+    IEnumerator CastDamageEffect()
+    {
+        // Original colour of the sprite 
+        Color baseColor = mSpriteRenderer.color;
+
+        mSpriteRenderer.color = Color.red;
+
+        for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
+        {
+            mSpriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
+            yield return null;
+        }
+
+        mSpriteRenderer.color = baseColor;
     }
 }

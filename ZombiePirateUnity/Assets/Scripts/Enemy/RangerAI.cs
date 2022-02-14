@@ -29,12 +29,13 @@ public class RangerAI : MonoBehaviour
     private Rigidbody2D rb;
 
     private AIPath aiPath;
-    private SpriteRenderer sprite;
+    private SpriteRenderer mSpriteRenderer;
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         aiPath = GetComponent<AIPath>();
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        mSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
 
         target = GameObject.Find("Player").transform;
     }
@@ -140,5 +141,42 @@ public class RangerAI : MonoBehaviour
                 lastAttackTime = Time.time;
             }
         }
+
+        // On death
+        if (health <= 0)
+        {
+            //ItemDropOnDeath();
+            Destroy(gameObject); // Method of death
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+        {
+            TakeDamage(collision.gameObject.GetComponent<Projectile>().Damage);
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        health -= damage;
+        StartCoroutine("CastDamageEffect");
+    }
+
+    IEnumerator CastDamageEffect()
+    {
+        // Original colour of the sprite 
+        Color baseColor = mSpriteRenderer.color;
+
+        mSpriteRenderer.color = Color.red;
+
+        for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
+        {
+            mSpriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
+            yield return null;
+        }
+
+        mSpriteRenderer.color = baseColor;
     }
 }

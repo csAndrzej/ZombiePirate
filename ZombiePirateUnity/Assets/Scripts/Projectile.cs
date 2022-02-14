@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private int MovementSpeed;
     [SerializeField] public int Damage;
+    private bool zombieAggro;
 
     void Update()
     {
@@ -17,6 +18,10 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
         {
+            //Aggro zombie
+            if (collision.transform.GetComponent<EnemyChase>())
+                collision.transform.GetComponent<EnemyChase>().aggro = true;
+
             Destroy(gameObject);
         }
     }

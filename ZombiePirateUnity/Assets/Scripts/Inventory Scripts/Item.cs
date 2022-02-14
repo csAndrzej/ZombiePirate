@@ -16,7 +16,8 @@ public class Item
         Crate,                              //TEMPORARY TEST ITEM DELETE LATER
         Rope,
         Pistol,
-        Musket
+        Musket,
+        HealthPotion
     }
 
     public ItemType itemType;               //identity of the item
@@ -33,6 +34,7 @@ public class Item
             case ItemType.Rope: return ItemAssets.Instance.ropeSprite;
             case ItemType.Pistol: return ItemAssets.Instance.pistolSprite;
             case ItemType.Musket: return ItemAssets.Instance.musketSprite;
+            case ItemType.HealthPotion: return ItemAssets.Instance.healthPotionSprite;
         }
     }
 
@@ -44,6 +46,7 @@ public class Item
             default:
             case ItemType.Barrel:
             case ItemType.Rope:
+            case ItemType.HealthPotion:
                 return true;
             case ItemType.Crate:
             case ItemType.Pistol:

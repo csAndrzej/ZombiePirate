@@ -104,10 +104,10 @@ public class PlayerController2D : MonoBehaviour
         //Allows player to use item in inventory, each item has different effects
         switch (item.itemType)
         {
-            case Item.ItemType.Barrel:      //TEMPORARY DELETE LATER
-                //do barrel stuff
-                Destroy(this.gameObject);
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.Barrel, amount = 1 });
+            case Item.ItemType.HealthPotion:      //TEMPORARY DELETE LATER
+                //do potion stuff
+                Health += MaxHealth / 3;
+                inventory.RemoveItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
                 break;
             case Item.ItemType.Crate:       //TEMPORARY DELETE LATER
                 //do crate stuff

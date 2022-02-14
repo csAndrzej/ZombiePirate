@@ -13,6 +13,8 @@ public class EnemyChase : MonoBehaviour
     private SuperZombie superZombie;
     private bool superZombieBool = false;
 
+    [HideInInspector] public bool aggro = false;
+
     void Start()
     {
         target = GameObject.Find("Player").transform;
@@ -47,18 +49,18 @@ public class EnemyChase : MonoBehaviour
         {
             if (superZombie.transformed)
             {
-                if (chaseRange < DistanceToTarget)
-                    aiPath.enabled = false;
-                else
+                if (chaseRange >= DistanceToTarget || aggro == true)
                     aiPath.enabled = true;
+                else
+                    aiPath.enabled = false;
             }
         }
         else
         {
-            if (chaseRange < DistanceToTarget)
-                aiPath.enabled = false;
-            else
+            if (chaseRange >= DistanceToTarget || aggro == true)
                 aiPath.enabled = true;
+            else
+                aiPath.enabled = false;
         }
     }
 }

@@ -19,4 +19,5 @@ public class ItemAssets : MonoBehaviour
     public Sprite ropeSprite;
     public Sprite pistolSprite;
     public Sprite musketSprite;
+    public Sprite healthPotionSprite;
 }

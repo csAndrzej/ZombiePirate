@@ -12,9 +12,9 @@ public class SuperZombie : MonoBehaviour
     [SerializeField] private Transform target;
     public float chaseRange;
 
-    [SerializeField] private int damage;
-    private float lastAttackTime;
-    [SerializeField] private float attackDelay;
+    [SerializeField] private int AttackDamage;
+    private float LastAttackDt;
+    [SerializeField] private float AttackDelay;
     [SerializeField] private float rotationSpeed = 90f;
 
     [SerializeField] private float distanceToBackAway;
@@ -23,16 +23,19 @@ public class SuperZombie : MonoBehaviour
     [SerializeField] private float transformationTimer;
     [HideInInspector] public bool startRunning = false;
 
-    private Item[] itemDrops;
-
     private Rigidbody2D rb;
+    private PlayerController2D mPlayerController;
     private AIPath aiPath;
+    private SpriteRenderer mSpriteRenderer;
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         aiPath = GetComponent<AIPath>();
 
         target = GameObject.Find("Player").transform;
+        mPlayerController = FindObjectOfType<PlayerController2D>();
+
+        mSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     //Code Version 1
@@ -143,6 +146,27 @@ public class SuperZombie : MonoBehaviour
             else if (distanceToPlayer < distanceToBackAway)
                 startRunning = true;
         }
+
+        // On death
+        if (health <= 0)
+        {
+            //ItemDropOnDeath();
+            Destroy(gameObject); // Method of death
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            // Check if enough time passed between attacks
+            if (Time.time > LastAttackDt + AttackDelay)
+            {
+                AttackTarget();
+                // Assigning time at which the attack occurred
+                LastAttackDt = Time.time;
+            }
+        }
     }
 
     void Transformation()
@@ -156,5 +180,39 @@ public class SuperZombie : MonoBehaviour
         aiPath.radius *= transformationSize/2; //Change radius of AIpath for more accurate pathfinding
 
         aiPath.enabled = true;
+    }
+
+    void AttackTarget()
+    {
+        mPlayerController.TakeDamage(AttackDamage);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+        {
+            TakeDamage(collision.gameObject.GetComponent<Projectile>().Damage);
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        health -= damage;
+        StartCoroutine("CastDamageEffect");
+    }
+
+    IEnumerator CastDamageEffect()
+    {
+        // Original colour of the sprite 
+        Color baseColor = mSpriteRenderer.color;
+
+        mSpriteRenderer.color = Color.red;
+
+        for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
+        {
+            mSpriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
+            yield return null;
+        }
+
+        mSpriteRenderer.color = baseColor;
     }
 }

@@ -16,9 +16,7 @@ public class Inventory
         itemList = new List<Item>();
 
         //This can be used to add items to the player upon start
-        //AddItem(new Item { itemType = Item.ItemType.Barrel, amount = 1 });      //TEMPORARY
-        //AddItem(new Item { itemType = Item.ItemType.Crate, amount = 1 });       //TEMPORARY
-        //AddItem(new Item { itemType = Item.ItemType.Rope, amount = 2 });
+        AddItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 3 });
     }
 
     public void AddItem(Item item)      
