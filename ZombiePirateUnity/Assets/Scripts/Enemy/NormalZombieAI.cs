@@ -17,7 +17,7 @@ public class NormalZombieAI : MonoBehaviour
     private float LastAttackDt;
     private Vector2 Velocity;
 
-    public int NumberOfZombies;
+    public static int NumberOfZombies;
     public GameObject walls;
 
     Color baseColor;
@@ -33,7 +33,7 @@ public class NormalZombieAI : MonoBehaviour
         
         LastAttackDt = 0f;
 
-        NumberOfZombies = 2;
+        NumberOfZombies = 12;
     }
     public void Update()
     {

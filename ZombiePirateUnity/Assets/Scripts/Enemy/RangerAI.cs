@@ -153,6 +153,7 @@ public class RangerAI : MonoBehaviour
         {
             //ItemDropOnDeath();
             Destroy(gameObject); // Method of death
+            NormalZombieAI.NumberOfZombies--;
         }
     }
 

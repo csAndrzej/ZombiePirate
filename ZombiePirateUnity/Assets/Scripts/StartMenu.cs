@@ -9,6 +9,9 @@ public class StartMenu : MonoBehaviour
     public GameObject IngameUI;
     public GameObject HPbar;
     public GameObject StoryUI;
+    public GameObject Screen1;
+
+    public GameObject walls;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +25,10 @@ public class StartMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (NormalZombieAI.NumberOfZombies <= 0)
+        {
+            Destroy(walls);
+        }
     }
 
     
@@ -38,6 +44,7 @@ public class StartMenu : MonoBehaviour
     startMenu.SetActive(false);
         IngameUI.SetActive(true);
         HPbar.SetActive(true);
+        Screen1.SetActive(true);
 
     }
     public void ShowStartMenu()
