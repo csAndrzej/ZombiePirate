@@ -9,6 +9,7 @@ public class StartMenu : MonoBehaviour
     public GameObject IngameUI;
     public GameObject HPbar;
     public GameObject StoryUI;
+    public GameObject Screen1;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class StartMenu : MonoBehaviour
     startMenu.SetActive(false);
         IngameUI.SetActive(true);
         HPbar.SetActive(true);
+        Screen1.SetActive(true);
 
     }
     public void ShowStartMenu()
