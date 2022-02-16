@@ -21,7 +21,6 @@ public class DamageController : MonoBehaviour
 
         for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
         {
-            Debug.Log("Player Sprite Color: " + mSpriteRenderer.color);
             mSpriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
             yield return null;
         }

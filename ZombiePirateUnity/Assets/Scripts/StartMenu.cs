@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class StartMenu : MonoBehaviour
 {
    
@@ -45,8 +46,13 @@ public class StartMenu : MonoBehaviour
         IngameUI.SetActive(true);
         HPbar.SetActive(true);
         Screen1.SetActive(true);
-
     }
+
+    public void ReloadGame()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
     public void ShowStartMenu()
     {
         startMenu.SetActive(true);

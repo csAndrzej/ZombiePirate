@@ -24,6 +24,11 @@ public class PlayerController2D : MonoBehaviour
     private SpriteRenderer mSpriteRenderer;
     private DamageController mDamageController;
     private StartMenu mStartMenu;
+    
+    private AudioController mAudioController;
+    public AudioClip acPain;
+    public AudioClip acShootAndReload;
+
 
     //inventory variables
     private Inventory inventory;
@@ -41,6 +46,7 @@ public class PlayerController2D : MonoBehaviour
         mRigidBody = GetComponent<Rigidbody2D>();
         mSpriteRenderer = GetComponent<SpriteRenderer>();
         mDamageController = GetComponent<DamageController>();
+        mAudioController = GameObject.FindGameObjectWithTag("AudioObject").GetComponent<AudioController>();
         baseColor = mSpriteRenderer.color;
 
         mStartMenu = FindObjectOfType<StartMenu>();
@@ -66,15 +72,25 @@ public class PlayerController2D : MonoBehaviour
     
     void Update()
     {
-        
-        MouseInput = new Vector3(Input.GetAxis("Fire1"), Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        // Gets the input from mouse button1 and it's xy axis
-        KeyboardInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        // Gets the input from keyboard for horizontal and vertical keys
+        mAudioController.PlayMusic();
+        if (Health <= 0)
+        {
+            return;
+        }
+
+            MouseInput = new Vector3(Input.GetAxis("Fire1"), Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            // Gets the input from mouse button1 and it's xy axis
+            KeyboardInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            // Gets the input from keyboard for horizontal and vertical keys
     }
 
     private void FixedUpdate()
     {
+        if (Health <= 0)
+        {
+            return;
+        }
+
         Vector3 MouseCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);   // Get mouse coordinates relative to our screen
 
         float Theta = -Mathf.Atan2(MouseCoord.x - transform.position.x, MouseCoord.y - transform.position.y) * (180 / Mathf.PI);
@@ -99,12 +115,8 @@ public class PlayerController2D : MonoBehaviour
             bullet.transform.position = transform.position;
             bullet.transform.rotation = transform.rotation;
             LastAttackDt = Time.time;
-        }
 
-        if (Health <= 0)
-        {
-            Destroy(gameObject);
-            mStartMenu.ShowStartMenu();
+            mAudioController.PlaySFX(acShootAndReload);
         }
     }
 
@@ -127,6 +139,12 @@ public class PlayerController2D : MonoBehaviour
     
     public void TakeDamage(int damage)
     {
+        if (Health <= 0)
+        {
+            return;
+        }
+
+        mAudioController.PlaySFX(acPain);
         Health -= damage;
         mDamageController.RunEffect(mSpriteRenderer, baseColor);
     }
