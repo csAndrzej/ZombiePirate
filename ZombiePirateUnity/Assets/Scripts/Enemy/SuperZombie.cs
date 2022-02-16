@@ -146,6 +146,19 @@ public class SuperZombie : MonoBehaviour
             else if (distanceToPlayer < distanceToBackAway)
                 startRunning = true;
         }
+        else
+        {
+            if (distanceToPlayer < 8f)
+            {
+                // Check if enough time passed between attacks
+                if (Time.time > LastAttackDt + AttackDelay)
+                {
+                    AttackTarget();
+                    // Assigning time at which the attack occurred
+                    LastAttackDt = Time.time;
+                }
+            }
+        }
 
         // On death
         if (health <= 0)
@@ -155,19 +168,19 @@ public class SuperZombie : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("Player"))
-        {
-            // Check if enough time passed between attacks
-            if (Time.time > LastAttackDt + AttackDelay)
-            {
-                AttackTarget();
-                // Assigning time at which the attack occurred
-                LastAttackDt = Time.time;
-            }
-        }
-    }
+    //private void OnCollisionStay2D(Collision2D collision)
+    //{
+    //    if (collision.transform.CompareTag("Player"))
+    //    {
+    //        // Check if enough time passed between attacks
+    //        if (Time.time > LastAttackDt + AttackDelay)
+    //        {
+    //            AttackTarget();
+    //            // Assigning time at which the attack occurred
+    //            LastAttackDt = Time.time;
+    //        }
+    //    }
+    //}
 
     void Transformation()
     {

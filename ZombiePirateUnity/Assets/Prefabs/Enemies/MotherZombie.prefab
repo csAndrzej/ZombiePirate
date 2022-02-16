@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7602657527882788605}
   - component: {fileID: 8688700245786824789}
-  - component: {fileID: 4938188948265252356}
+  - component: {fileID: 6285892482859956783}
   - component: {fileID: 1505851508118981254}
   - component: {fileID: 1896812128221818316}
   m_Layer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5008555912321974608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.4, y: 8.8, z: -1}
+  m_LocalPosition: {x: -20.4, y: -23.2, z: -1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,8 +87,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4938188948265252356
-BoxCollider2D:
+--- !u!58 &6285892482859956783
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -101,18 +101,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8.01, y: 7.11}
-    newSize: {x: 7.82, y: 7.6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.25, y: 6.27}
-  m_EdgeRadius: 0
+  m_Radius: 3
 --- !u!50 &1505851508118981254
 Rigidbody2D:
   serializedVersion: 4
@@ -149,9 +139,9 @@ MonoBehaviour:
   target: {fileID: 0}
   health: 7
   spawnableZombies:
-  - {fileID: 3877042487598500120, guid: c48ef9365dfb57d4c9dd1fc230474c83, type: 3}
-  - {fileID: 2026013944695657773, guid: 69b69312bd489884a90aabffc87331a4, type: 3}
-  - {fileID: 2026013944695657773, guid: 69b69312bd489884a90aabffc87331a4, type: 3}
+  - {fileID: 798899626590523364, guid: 0a7fb2591be6815409c138af69046aff, type: 3}
+  - {fileID: 5186230446263164230, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
+  - {fileID: 5186230446263164230, guid: 10a88fc2841b9144eb9a909771896168, type: 3}
   attackRange: 20
   spawnRange: 10
   attackDelay: 4

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class MotherZombieAI : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class MotherZombieAI : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        target = GameObject.Find("Player").transform;
         mSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
@@ -41,7 +43,10 @@ public class MotherZombieAI : MonoBehaviour
             {
                 //spawn zombies with timer
                 GameObject newZombie = Instantiate(spawnableZombies[Random.Range(0, spawnableZombies.Length)], transform.position, transform.rotation);
+                newZombie.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 newZombie.transform.position = new Vector2(transform.position.x + Random.Range(-spawnRange, spawnRange), transform.position.y + Random.Range(-spawnRange, spawnRange));
+                newZombie.transform.Find("Sprite").GetComponent<SpriteRenderer>().sortingOrder = 5;
+                newZombie.GetComponent<AIDestinationSetter>().target = target;
 
                 lastAttackTime = Time.time;
             }
