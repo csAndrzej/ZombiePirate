@@ -165,6 +165,8 @@ public class SuperZombie : MonoBehaviour
         {
             //ItemDropOnDeath();
             Destroy(gameObject); // Method of death
+
+            NormalZombieAI.NumberOfZombies--;
         }
     }
 

@@ -27,7 +27,7 @@ public class PlayerController2D : MonoBehaviour
     private Inventory inventory;
     [SerializeField] private UI_Inventory uiInventory;
 
-    public GameObject DiedScreen;
+    
     
     
     void Awake()
@@ -97,7 +97,7 @@ public class PlayerController2D : MonoBehaviour
         if (Health <= 0)
         {
             Destroy(gameObject);
-            DiedScreen.SetActive(true);
+            
         }
     }
 

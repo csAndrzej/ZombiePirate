@@ -58,6 +58,8 @@ public class MotherZombieAI : MonoBehaviour
             ItemDropOnDeath();
 
             Destroy(gameObject); //Method of death
+
+            NormalZombieAI.NumberOfZombies
         }
     }
 
