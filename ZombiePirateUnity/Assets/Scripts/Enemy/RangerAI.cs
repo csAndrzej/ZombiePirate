@@ -30,11 +30,17 @@ public class RangerAI : MonoBehaviour
 
     private AIPath aiPath;
     private SpriteRenderer mSpriteRenderer;
+    private DamageController mDamageController;
+
+    private Color baseColor;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         aiPath = GetComponent<AIPath>();
         mSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        mDamageController = GetComponent<DamageController>();
+        baseColor = mSpriteRenderer.color;
 
 
         target = GameObject.Find("Player").transform;
@@ -161,22 +167,6 @@ public class RangerAI : MonoBehaviour
     private void TakeDamage(int damage)
     {
         health -= damage;
-        StartCoroutine("CastDamageEffect");
-    }
-
-    IEnumerator CastDamageEffect()
-    {
-        // Original colour of the sprite 
-        Color baseColor = mSpriteRenderer.color;
-
-        mSpriteRenderer.color = Color.red;
-
-        for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
-        {
-            mSpriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
-            yield return null;
-        }
-
-        mSpriteRenderer.color = baseColor;
+        mDamageController.RunEffect(mSpriteRenderer, baseColor);
     }
 }

@@ -22,10 +22,14 @@ public class PlayerController2D : MonoBehaviour
     private Vector2 Velocity;
     private Rigidbody2D mRigidBody;
     private SpriteRenderer mSpriteRenderer;
+    private DamageController mDamageController;
+    private StartMenu mStartMenu;
 
     //inventory variables
     private Inventory inventory;
     [SerializeField] private UI_Inventory uiInventory;
+
+    Color baseColor;
 
     
     
@@ -36,6 +40,10 @@ public class PlayerController2D : MonoBehaviour
 
         mRigidBody = GetComponent<Rigidbody2D>();
         mSpriteRenderer = GetComponent<SpriteRenderer>();
+        mDamageController = GetComponent<DamageController>();
+        baseColor = mSpriteRenderer.color;
+
+        mStartMenu = FindObjectOfType<StartMenu>();
 
         inventory = new Inventory(UseItem);
         uiInventory.SetPlayer(this.gameObject);
@@ -96,6 +104,7 @@ public class PlayerController2D : MonoBehaviour
         if (Health <= 0)
         {
             Destroy(gameObject);
+            mStartMenu.ShowStartMenu();
         }
     }
 
@@ -119,22 +128,6 @@ public class PlayerController2D : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health -= damage;
-        StartCoroutine("CastDamageEffect");
-    }
-
-    IEnumerator CastDamageEffect()
-    {
-        // Original colour of the sprite 
-        Color baseColor = mSpriteRenderer.color;
-        
-        mSpriteRenderer.color = Color.red;
-
-        for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
-        {
-            mSpriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
-            yield return null;
-        }
-
-        mSpriteRenderer.color = baseColor;
+        mDamageController.RunEffect(mSpriteRenderer, baseColor);
     }
 }

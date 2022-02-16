@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6285892482859956783}
   - component: {fileID: 1505851508118981254}
   - component: {fileID: 1896812128221818316}
+  - component: {fileID: 2185309370145225706}
   m_Layer: 0
   m_Name: MotherZombie
   m_TagString: Enemy
@@ -146,3 +147,15 @@ MonoBehaviour:
   spawnRange: 10
   attackDelay: 4
   rotationSpeed: 45
+--- !u!114 &2185309370145225706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008555912321974608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef25afb201930d74ca424737bb7f2eb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 841029763569247059}
   - component: {fileID: 841029763569247056}
   - component: {fileID: 4528259421978916586}
+  - component: {fileID: 8478864356529676195}
   m_Layer: 0
   m_Name: SuperZombie
   m_TagString: Enemy
@@ -192,8 +193,8 @@ MonoBehaviour:
   speed: 1.5
   target: {fileID: 0}
   chaseRange: 30
-  damage: 1
-  attackDelay: 2
+  AttackDamage: 0
+  AttackDelay: 0
   rotationSpeed: 180
   distanceToBackAway: 20
   transformed: 0
@@ -296,3 +297,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseRange: 10
+  aggro: 0
+--- !u!114 &8478864356529676195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7657878004014281152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef25afb201930d74ca424737bb7f2eb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

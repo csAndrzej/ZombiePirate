@@ -16,6 +16,9 @@ public class MotherZombieAI : MonoBehaviour
     [SerializeField] private float attackDelay;
     [SerializeField] private float rotationSpeed = 45f;
     private SpriteRenderer mSpriteRenderer;
+    private DamageController mDamageController;
+    private Color baseColor;
+
     private Rigidbody2D rb;
 
     void Start()
@@ -23,6 +26,8 @@ public class MotherZombieAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.Find("Player").transform;
         mSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        mDamageController = GetComponent<DamageController>();
+        baseColor = mSpriteRenderer.color;
     }
 
     void Update()
@@ -90,21 +95,6 @@ public class MotherZombieAI : MonoBehaviour
     private void TakeDamage(int damage)
     {
         health -= damage;
-        StartCoroutine("CastDamageEffect");
-    }
-    IEnumerator CastDamageEffect()
-    {
-        // Original colour of the sprite 
-        Color baseColor = mSpriteRenderer.color;
-
-        mSpriteRenderer.color = Color.red;
-
-        for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
-        {
-            mSpriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
-            yield return null;
-        }
-
-        mSpriteRenderer.color = baseColor;
+        mDamageController.RunEffect(mSpriteRenderer, baseColor);
     }
 }

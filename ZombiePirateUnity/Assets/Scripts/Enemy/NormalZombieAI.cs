@@ -12,6 +12,7 @@ public class NormalZombieAI : MonoBehaviour
     [SerializeField] private Transform Target;
     private PlayerController2D mPlayerController;
     private SpriteRenderer mSpriteRenderer;
+    private DamageController mDamageController;
     private Rigidbody2D mRigidBody;
     private float LastAttackDt;
     private Vector2 Velocity;
@@ -19,12 +20,16 @@ public class NormalZombieAI : MonoBehaviour
     public int NumberOfZombies;
     public GameObject walls;
 
-    void Start()
+    Color baseColor;
+
+    void Awake()
     {
         mRigidBody = GetComponent<Rigidbody2D>();
         Target = GameObject.FindGameObjectWithTag("Player").transform;
         mPlayerController = FindObjectOfType<PlayerController2D>();
         mSpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        mDamageController = GetComponent<DamageController>();
+        baseColor = mSpriteRenderer.color;
         
         LastAttackDt = 0f;
 
@@ -86,26 +91,10 @@ public class NormalZombieAI : MonoBehaviour
         }
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         Health -= damage;
-        StartCoroutine("CastDamageEffect");
-    }
-
-    IEnumerator CastDamageEffect()
-    {
-        // Original colour of the sprite 
-        Color baseColor = mSpriteRenderer.color;
-        
-        mSpriteRenderer.color = Color.red;
-
-        for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
-        {
-            mSpriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
-            yield return null;
-        }
-
-        mSpriteRenderer.color = baseColor;
+        mDamageController.RunEffect(mSpriteRenderer, baseColor);
     }
 
     private void ItemDropOnDeath()

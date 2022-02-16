@@ -5,30 +5,28 @@ using UnityEngine;
 public class DamageController : MonoBehaviour
 {
     private SpriteRenderer mSpriteRenderer;
+    private Color baseColor;
 
-    void Awake()
+    public void RunEffect(SpriteRenderer sr, Color bc)
     {
-        mSpriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    public void Run()
-    {
+        mSpriteRenderer = sr;
+        baseColor = bc;
         StartCoroutine("CastDamageEffect");
     }
 
     IEnumerator CastDamageEffect()
     {
-        // Original colour of the sprite 
-        Color baseColor = mSpriteRenderer.color;
         
         mSpriteRenderer.color = Color.red;
 
         for (float time = 0; time < 1.0f; time += Time.deltaTime / 1)
         {
+            Debug.Log("Player Sprite Color: " + mSpriteRenderer.color);
             mSpriteRenderer.color = Color.Lerp(Color.red, baseColor, time);
             yield return null;
         }
 
         mSpriteRenderer.color = baseColor;
+
     }
 }
