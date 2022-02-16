@@ -60,5 +60,9 @@ public class StartMenu : MonoBehaviour
     {
         StoryUI.SetActive(false);
     }
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
 
