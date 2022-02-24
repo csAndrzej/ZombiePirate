@@ -28,6 +28,7 @@ public class HpSlider : MonoBehaviour
         if (PlayerController2D.Health <= 0)
         {
             DiedScreen.SetActive(true);
+            Destroy(gameObject);
         }
     }
 
